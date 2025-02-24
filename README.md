@@ -6,7 +6,7 @@ LapXpert là một ứng dụng web thương mại điện tử chuyên bán lap
 ## 🛠 Công Nghệ Sử Dụng
 
 ### **Backend (Spring Boot)**
-- **Spring Boot + Spring Web** - Phát triển API RESTful
+- **Spring Boot + GraphQL** - Phát triển API RESTful
 - **Spring Security + JWT** - Xác thực & bảo mật
 - **Spring Data JPA + Hibernate** - Tương tác với cơ sở dữ liệu
 - **PostgreSQL** - Cơ sở dữ liệu chính
@@ -45,22 +45,26 @@ lapxpert-backend/
 │   ├── users/
 │   │   ├── build.gradle
 │   │   ├── src/main/java/com/lapxpert/users/
-│   │   ├── src/main/resources/
+│   │   ├── src/main/resources/graphql/ (Chứa schema GraphQL)
+│   │   ├── src/main/resources/application.properties
 │   │
 │   ├── products/
 │   │   ├── build.gradle
 │   │   ├── src/main/java/com/lapxpert/products/
-│   │   ├── src/main/resources/
+│   │   ├── src/main/resources/graphql/
+│   │   ├── src/main/resources/application.properties
 │   │
 │   ├── orders/
 │   │   ├── build.gradle
 │   │   ├── src/main/java/com/lapxpert/orders/
-│   │   ├── src/main/resources/
+│   │   ├── src/main/resources/graphql/
+│   │   ├── src/main/resources/application.properties
 │   │
 │   ├── payments/
 │   │   ├── build.gradle
 │   │   ├── src/main/java/com/lapxpert/payments/
-│   │   ├── src/main/resources/
+│   │   ├── src/main/resources/graphql/
+│   │   ├── src/main/resources/application.properties
 │
 ├── common/
 │   ├── build.gradle  (Chứa các class dùng chung như DTO, Exception)
