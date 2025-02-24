@@ -76,8 +76,8 @@ lapxpert-backend/
 ```
 frontend/
 ├── src/
-│   ├── assets/         # Static assets (icons, logos, etc.)
-│   ├── components/     # Reusable Vue components
+│   ├── assets/        # Static assets (icons, logos, etc.)
+│   ├── components/    # Reusable Vue components
 │   ├── pages/         # Views cho từng route
 │   ├── router/        # Cấu hình Vue Router
 │   ├── store/         # Pinia store (quản lý state)
@@ -85,7 +85,7 @@ frontend/
 │   ├── App.vue        # Main Vue app component
 │   ├── main.js        # Application entry point
 ├── public/
-│   ├── index.html      # Root HTML file
+│   ├── index.html     # Root HTML file
 ├── package.json       # Project dependencies
 ├── vite.config.js     # Cấu hình Vite
 ```
