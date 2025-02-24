@@ -33,6 +33,43 @@ LapXpert là một ứng dụng web thương mại điện tử chuyên bán lap
 - **Logging & Monitoring**? (Prometheus, Grafana, ELK Stack)
 - **SEO & Hiệu suất**? (Nuxt.js nếu cần SSR, hoặc Vue SEO plugins)
 
+## 📌 Bảng so sánh công nghệ trong dự án LapXpert
+
+| **Yếu tố**           | **Công nghệ đã chọn** | **Lựa chọn thay thế** | **Lý do chọn** |
+|----------------------|----------------------|----------------------|----------------|
+| **Backend Framework** | Spring Boot (Java)  | Express.js (Node.js), Django (Python) | **Spring Boot mạnh mẽ, dễ mở rộng**, hỗ trợ Modular Monolithic tốt. Java cũng phù hợp với môi trường doanh nghiệp. |
+| **API Design** | GraphQL | REST API | **GraphQL linh hoạt hơn REST**, giúp **frontend lấy đúng dữ liệu cần thiết**, giảm số request API, tối ưu hiệu suất. |
+| **Frontend Framework** | Vue 3 + Vite | React, Angular | Vue 3 có **hiệu suất cao, dễ học, dễ thiết kế giao diện**, Vite giúp build nhanh hơn Webpack. |
+| **Database** | PostgreSQL | MySQL, MongoDB | PostgreSQL có **hiệu suất tốt**, hỗ trợ **JSON, full-text search**, mạnh về giao dịch. |
+| **Lưu trữ ảnh** | Cloud Storage (AWS S3, Cloudinary) | Lưu trong PostgreSQL, Local Storage | **Lưu ảnh trong DB làm chậm truy vấn**. Cloud Storage giúp **tải nhanh, tối ưu chi phí, dễ mở rộng**. |
+| **Authentication** | JWT (JSON Web Token) | Session-based, OAuth2 | JWT **nhẹ, nhanh, stateless**, phù hợp với API-first architecture. |
+| **Thanh toán** | Stripe, VNPay, Momo | Chuyển khoản ngân hàng, COD | Stripe và VNPay hỗ trợ **giao dịch nhanh, bảo mật cao, phổ biến**. |
+| **Real-time Updates** | WebSockets / SSE | Polling API | **WebSockets & SSE cập nhật dữ liệu ngay lập tức**, polling gây **tốn tài nguyên server**. |
+| **Logging & Monitoring** | ELK Stack (Elasticsearch, Logstash, Kibana) | Chỉ log file truyền thống | ELK Stack giúp **giám sát hệ thống real-time, dễ phân tích log**. |
+| **SEO & Hiệu suất** | Vue SEO Plugins (hoặc Nuxt.js) | Không dùng SSR | Nếu cần SEO tốt, Nuxt.js hỗ trợ **Server-Side Rendering (SSR)**, còn Vue SEO Plugins giúp tối ưu thẻ meta. |
+| **Deployment** | Docker + Kubernetes | Chạy trực tiếp trên server | Docker giúp **môi trường nhất quán**, dễ **scale với Kubernetes** nếu cần. |
+| **CI/CD** | GitHub Actions | Jenkins, GitLab CI/CD | GitHub Actions **tích hợp sẵn trên GitHub**, dễ dùng, mạnh mẽ. |
+
+---
+
+### **🔥 Tại sao chọn GraphQL thay vì REST API?**
+
+| **Tiêu chí**      | **GraphQL** | **REST API** |
+|------------------|------------|-------------|
+| **Dữ liệu trả về** | Chỉ trả về đúng dữ liệu cần thiết | Trả về toàn bộ response (có thể thừa dữ liệu) |
+| **Số request API** | Một request có thể lấy nhiều dữ liệu khác nhau | Phải gọi nhiều API để lấy đủ dữ liệu |
+| **Performance** | Tối ưu hơn khi cần query dữ liệu phức tạp | Có thể gây tốn băng thông do dữ liệu thừa |
+| **Tính linh hoạt** | Frontend tự định nghĩa dữ liệu cần lấy | Backend phải fix cứng response của API |
+| **Caching** | Khó caching hơn do query động | Dễ caching hơn (RESTful endpoints cố định) |
+| **Học và triển khai** | Cần học cách viết schema, resolver | Dễ triển khai hơn (chỉ cần định nghĩa routes) |
+
+### **👉 Tóm lại:**
+- **Dùng GraphQL giúp tối ưu performance, giảm request API không cần thiết.**  
+- **Nhưng nếu API đơn giản, REST có thể dễ triển khai hơn.**  
+- **Với dự án LapXpert (e-commerce), GraphQL giúp frontend lấy dữ liệu nhanh hơn mà không cần nhiều API.**  
+
+---
+
 ## 📂 Cấu Trúc Dự Án
 
 ### **Backend (Spring Boot - Gradle Modular Monolithic)**
