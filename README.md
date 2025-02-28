@@ -72,45 +72,68 @@ LapXpert là một ứng dụng web thương mại điện tử chuyên bán lap
 
 ## 📂 Cấu Trúc Dự Án
 
-### **Backend (Spring Boot - Gradle Modular Monolithic)**
+### **Backend (Spring Boot - Gradle Modular Monolithic + DDD)**
 ```
-lapxpert-backend/
+LapXpert/
 │── build.gradle  (Gradle chính)
 │── settings.gradle (Khai báo danh sách module)
 │
-├── modules/
-│   ├── users/
-│   │   ├── build.gradle
-│   │   ├── src/main/java/com/lapxpert/users/
-│   │   ├── src/main/resources/graphql/ (Chứa schema GraphQL)
-│   │   ├── src/main/resources/application.properties
+├── src/main/java/com/lapxpert/
+│   ├── hoadon/  (Module Hoá đơn - Tách theo domain)
+│   │   ├── application/  (Lớp Application - Entry Point API)
+│   │   │   ├── controller/  (REST + GraphQL Adapter)
+│   │   │   ├── graphql/  (Schema GraphQL)
+│   │   │   ├── dto/  (Data Transfer Objects)
+│   │   │   ├── exception/  (Exception riêng)
+│   │   │   ├── event/  (Domain Events - Kafka)
+│   │   │   ├── security/  (JWT, OAuth, Spring Security)
+│   │   │   ├── config/  (Cấu hình CORS, Security)
 │   │
-│   ├── products/
-│   │   ├── build.gradle
-│   │   ├── src/main/java/com/lapxpert/products/
-│   │   ├── src/main/resources/graphql/
-│   │   ├── src/main/resources/application.properties
+│   │   ├── domain/  (Lớp Business Logic - Không phụ thuộc Spring)
+│   │   │   ├── entity/  (JPA Entities / Aggregate Roots)
+│   │   │   ├── service/  (Business Logic - Application Service)
+│   │   │   ├── repository/  (Chỉ chứa Interface)
 │   │
-│   ├── orders/
-│   │   ├── build.gradle
-│   │   ├── src/main/java/com/lapxpert/orders/
-│   │   ├── src/main/resources/graphql/
-│   │   ├── src/main/resources/application.properties
-│   │
-│   ├── payments/
-│   │   ├── build.gradle
-│   │   ├── src/main/java/com/lapxpert/payments/
-│   │   ├── src/main/resources/graphql/
-│   │   ├── src/main/resources/application.properties
+│   │   ├── infrastructure/  (Lớp Infrastructure - Công nghệ)
+│   │   │   ├── persistence/  (PostgreSQL Repository Implementations)
+│   │   │   │   ├── HoaDonJpaRepository.java  (Implement repository interface)
+│   │   │   │   ├── HoaDonJpaMapper.java  (Chuyển đổi Entity <-> DTO)
+│   │   │   │   ├── persistence-config.properties  (Config DB)
+│   │   │   ├── messaging/  (Kafka / RabbitMQ Implementations)
+│   │   │   │   ├── HoaDonKafkaProducer.java  (Gửi event)
+│   │   │   │   ├── HoaDonKafkaConsumer.java  (Nhận event)
+│   │   │   │   ├── kafka-config.properties  (Config Kafka)
+│   │   │   ├── cache/  (Redis Implementations)
+│   │   │   │   ├── HoaDonRedisRepository.java  (Lưu cache hoadon)
+│   │   │   │   ├── redis-config.properties  (Config Redis)
 │
-├── common/
-│   ├── build.gradle  (Chứa các class dùng chung như DTO, Exception)
-│   ├── src/main/java/com/lapxpert/common/
+│   ├── products/  (Module Sản phẩm - Tương tự hoadon)
+│   │   ├── application/
+│   │   ├── domain/
+│   │   ├── infrastructure/
 │
-└── application/
-    ├── build.gradle  (Module chính, chạy Spring Boot)
-    ├── src/main/java/com/lapxpert/application/
-    ├── src/main/resources/
+│   ├── users/  (Module Người dùng - Tương tự hoadon)
+│   │   ├── application/
+│   │   ├── domain/
+│   │   ├── infrastructure/
+│
+│   ├── common/  (Chứa các class dùng chung giữa các module)
+│   │   ├── exception/  (Global Exception Handler)
+│   │   ├── security/  (JWT, OAuth)
+│   │   ├── dto/  (DTO dùng chung)
+│   │   ├── util/  (Helper functions)
+│
+├── src/main/resources/
+│   ├── application.yml  (Cấu hình Spring Boot)
+│   ├── graphql/  (Schema GraphQL)
+│   ├── sql/  (Scripts khởi tạo Database)
+│
+├── src/test/java/com/lapxpert/
+│   ├── hoadon/
+│   │   ├── HoaDonServiceTest.java  (Unit Test)
+│   │   ├── HoaDonIntegrationTest.java  (Integration Test)
+│
+└── docker-compose.yml  (Chạy PostgreSQL, Redis, Kafka bằng Docker)
 ```
 
 ### **Frontend (Vue 3 + Vite)**
