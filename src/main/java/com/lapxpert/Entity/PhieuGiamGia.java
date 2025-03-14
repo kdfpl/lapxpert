@@ -39,12 +39,12 @@ public class PhieuGiamGia {
 
     @NotNull
     @Column(name = "thoi_gian_bat_dau", nullable = false)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate thoiGianBatDau;
 
     @NotNull
     @Column(name = "thoi_gian_ket_thuc", nullable = false)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate thoiGianKetThuc;
 
     @Column(name = "gia_tri_don_hang_toi_thieu", precision = 10, scale = 2)
@@ -63,6 +63,6 @@ public class PhieuGiamGia {
     private Boolean tinhTrang;
 
     @Column(name = "ngay_tao")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate ngayTao;
 }
