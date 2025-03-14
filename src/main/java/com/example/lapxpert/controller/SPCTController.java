@@ -3,10 +3,7 @@ package com.example.lapxpert.controller;
 import com.example.lapxpert.entity.*;
 import com.example.lapxpert.service.SPCTService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
 public class SPCTController {
     @Autowired
     SPCTService sanPhamService;
-
+    //Hiển Thị
     @GetMapping("/list")
     public List<SanPhamChiTiet> getAllSanPhamCT() {
         return sanPhamService.getAllSpct();
@@ -48,5 +45,19 @@ public class SPCTController {
     @GetMapping("/o-cung")
     public List<OCung> getAllOCung() {
         return sanPhamService.getAllOCung();
+    }
+    //Cpu
+    @PostMapping("/cpu/add")
+    public Cpu addCpu(Cpu cpu) {
+        return sanPhamService.addCpu(cpu);
+    }
+    @PutMapping("/{id}")
+    public Cpu updateCpu(@PathVariable Integer id, @RequestBody Cpu cpu) {
+        return sanPhamService.updateCpu(id, cpu);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteCpu(@PathVariable Integer id) {
+        return sanPhamService.deleteCpu(id);
     }
 }

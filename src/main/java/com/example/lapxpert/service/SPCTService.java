@@ -13,4 +13,8 @@ public interface SPCTService {
     List<Gpu> getAllGpu();
     List<Cpu> getAllCpu();
     List<OCung> getAllOCung();
+
+    public Cpu addCpu(Cpu cpu);
+    public Cpu updateCpu(Integer id, Cpu cpu);
+    public boolean deleteCpu(Integer id);
 }

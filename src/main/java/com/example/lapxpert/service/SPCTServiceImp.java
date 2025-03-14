@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SPCTServiceImp implements SPCTService {
@@ -58,11 +59,47 @@ public class SPCTServiceImp implements SPCTService {
 
     @Override
     public List<Cpu> getAllCpu() {
-        return cpuRepository.findAll();
+        return cpuRepository.findByTinhTrangTrue();
     }
+
+
 
     @Override
     public List<OCung> getAllOCung() {
         return ocungRepository.findAll();
+    }
+
+    @Override
+    public Cpu addCpu(Cpu cpu) {
+        return cpuRepository.save(cpu);
+    }
+
+    @Override
+    public Cpu updateCpu(Integer id, Cpu cpuDetails) {
+        Optional<Cpu> cpuOptional = cpuRepository.findById(id);
+        if (cpuOptional.isPresent()) {
+            Cpu cpu = cpuOptional.get();
+            cpu.setMaCpu(cpuDetails.getMaCpu());
+            cpu.setHangCpu(cpuDetails.getHangCpu());
+            cpu.setTenCpu(cpuDetails.getTenCpu());
+            cpu.setTheHeCpu(cpuDetails.getTheHeCpu());
+            cpu.setSoNhan(cpuDetails.getSoNhan());
+            cpu.setSoLuong(cpuDetails.getSoLuong());
+            cpu.setXungNhip(cpuDetails.getXungNhip());
+            return cpuRepository.save(cpu);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteCpu(Integer id) {
+        Optional<Cpu> cpuOptional = cpuRepository.findById(id);
+        if (cpuOptional.isPresent()) {
+            Cpu cpu = cpuOptional.get();
+            cpu.setTinhTrang(false); // Xóa mềm
+            cpuRepository.save(cpu);
+            return true;
+        }
+        return false;
     }
 }
