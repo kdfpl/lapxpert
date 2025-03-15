@@ -14,6 +14,6 @@ public class LoaiRamServiceImp implements LoaiRamService {
 
     @Override
     public List<LoaiRam> getAll() {
-        return loaiRamRepository.findAll();
+        return loaiRamRepository.findByTinhTrangTrue();
     }
 }

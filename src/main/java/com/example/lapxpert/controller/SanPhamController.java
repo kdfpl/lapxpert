@@ -1,15 +1,9 @@
 package com.example.lapxpert.controller;
 
-import com.example.lapxpert.entity.HeDieuHanh;
-import com.example.lapxpert.entity.LoaiSanPham;
-import com.example.lapxpert.entity.SanPham;
-import com.example.lapxpert.entity.ThuongHieu;
+import com.example.lapxpert.entity.*;
 import com.example.lapxpert.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +29,20 @@ public class SanPhamController {
     @GetMapping("/loai-san-pham")
     public List<LoaiSanPham> getAllLoaiSanPham() {
         return sanPhamService.getAllLoaiSanPham();
+    }
+    //    San Pham
+    @PostMapping("/add")
+    public SanPham addSanPham(@RequestBody SanPham sanPham) {
+        return sanPhamService.addSanPham(sanPham);
+    }
+
+    @PutMapping("/update/{id}")
+    public SanPham updateSanPham(@PathVariable Integer id, @RequestBody SanPham sanPham) {
+        return sanPhamService.updateSanPham(id, sanPham);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteSanPham(@PathVariable Integer id) {
+        return sanPhamService.deleteSanPham(id);
     }
 }
