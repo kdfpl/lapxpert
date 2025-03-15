@@ -390,6 +390,7 @@ public class SPCTServiceImp implements SPCTService {
         Optional<SanPhamChiTiet> spctOptional = spctRepository.findById(id);
         if (spctOptional.isPresent()) {
             SanPhamChiTiet spct = spctOptional.get();
+            spct.setSanPham(spctDetails.getSanPham());
             spct.setRam(spctDetails.getRam());
             spct.setManHinh(spctDetails.getManHinh());
             spct.setPin(spctDetails.getPin());

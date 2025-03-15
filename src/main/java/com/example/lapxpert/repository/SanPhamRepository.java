@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
     List<SanPham> findByTinhTrangTrue();
+//    List<SanPham> findSanPhamsByIdAndTinhTrangTrue(Integer id, boolean tinhTrang);
 }
