@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -36,11 +37,11 @@ public class DotGiamGia {
 
     @NotNull
     @Column(name = "thoi_gian_bat_dau", nullable = false)
-    private Instant thoiGianBatDau;
+    private LocalDateTime thoiGianBatDau;
 
     @NotNull
     @Column(name = "thoi_gian_ket_thuc", nullable = false)
-    private Instant thoiGianKetThuc;
+    private LocalDateTime thoiGianKetThuc;
 
     @NotNull
     @Column(name = "gia_tri_giam", nullable = false, precision = 10, scale = 2)
@@ -70,4 +71,13 @@ public class DotGiamGia {
     @JsonManagedReference
     private Set<DotGiamGiaChiTiet> dotGiamGiaChiTiets = new LinkedHashSet<>();
 
+    @PrePersist
+    protected void onCreate() {
+        if (ngayTao == null) {
+            ngayTao = Instant.now();
+        }
+        if (tinhTrang == null) {
+            tinhTrang = true;
+        }
+    }
 }

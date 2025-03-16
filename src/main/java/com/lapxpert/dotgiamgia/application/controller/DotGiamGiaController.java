@@ -2,15 +2,13 @@ package com.lapxpert.dotgiamgia.application.controller;
 
 import com.lapxpert.dotgiamgia.domain.entity.DotGiamGia;
 import com.lapxpert.dotgiamgia.domain.service.DotGiamGiaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/dotgiamgia")
+@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/api/dot-giam-gia")
 public class DotGiamGiaController {
     private final DotGiamGiaService dotGiamGiaService;
 
@@ -18,9 +16,19 @@ public class DotGiamGiaController {
         this.dotGiamGiaService = dotGiamGiaService;
     }
 
-    @GetMapping("/fetch")
+    @GetMapping("fetch")
     @ResponseBody
     public List<DotGiamGia> fetchDotGiamGias() {
         return dotGiamGiaService.findAll();
+    }
+
+    @PostMapping("add")
+    public void addDotGiamGia(@RequestBody DotGiamGia dotGiamGia) {
+        dotGiamGiaService.addOrUpdate(dotGiamGia);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteDotGiamGia(@PathVariable Integer id) {
+        dotGiamGiaService.deleteById(id);
     }
 }

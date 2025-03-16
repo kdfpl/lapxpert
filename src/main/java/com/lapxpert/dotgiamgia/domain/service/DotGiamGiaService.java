@@ -14,13 +14,14 @@ public class DotGiamGiaService {
         this.dotGiamGiaRepository = dotGiamGiaRepository;
     }
 
-    public void addOrUpdateDotGiamGia(DotGiamGia dotGiamGia) {
+    public void addOrUpdate(DotGiamGia dotGiamGia) {
         dotGiamGiaRepository.save(dotGiamGia);
     }
 
-    public void deleteDotGiamGia(Integer id) {
+    public void deleteById(Integer id) {
         dotGiamGiaRepository.deleteById(id);
     }
+
 
     public List<DotGiamGia> findAll() {
         return dotGiamGiaRepository.findAll();
