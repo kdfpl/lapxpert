@@ -25,17 +25,17 @@ public class SanPham {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_loai")
-    private LoaiSanPham idLoai;
+    private LoaiSanPham loai;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_he_dieu_hanh")
-    private HeDieuHanh idHeDieuHanh;
+    private HeDieuHanh heDieuHanh;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_thuong_hieu")
-    private ThuongHieu idThuongHieu;
+    private ThuongHieu thuongHieu;
 
     @Size(max = 36)
     @NotNull

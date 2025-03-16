@@ -1,6 +1,7 @@
 package com.lapxpert.dotgiamgia.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.lapxpert.sanpham.domain.entity.SanPhamChiTiet;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -41,5 +42,10 @@ public class DotGiamGiaChiTiet {
     @ColumnDefault("true")
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id_sp_ct")
+    private SanPhamChiTiet idSpCt;
 
 }

@@ -9,11 +9,8 @@ import java.util.List;
 
 public interface SanPhamService {
     List<SanPham> getAllSP();
-
     List<ThuongHieu> getAllThuongHieu();
-
     List<HeDieuHanh> getAllHeDieuHanh();
-
     List<LoaiSanPham> getAllLoaiSanPham();
 
     SanPham addSanPham(SanPham sanPham);
