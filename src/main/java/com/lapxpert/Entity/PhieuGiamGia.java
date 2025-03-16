@@ -64,5 +64,5 @@ public class PhieuGiamGia {
 
     @Column(name = "ngay_tao")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate ngayTao;
+    private LocalDate ngayTao = LocalDate.now();
 }
