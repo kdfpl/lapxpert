@@ -1,5 +1,6 @@
 package com.lapxpert.sanpham.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,17 +23,17 @@ public class SanPham {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_loai")
     private LoaiSanPham loai;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_he_dieu_hanh")
     private HeDieuHanh heDieuHanh;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_thuong_hieu")
     private ThuongHieu thuongHieu;
@@ -68,6 +69,5 @@ public class SanPham {
 
     @Column(name = "hinh_anh", length = Integer.MAX_VALUE)
     private String hinhAnh;
-
 
 }

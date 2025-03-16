@@ -1,5 +1,6 @@
 package com.lapxpert.sanpham.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -13,6 +14,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "loai_ram")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class LoaiRam {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loai_ram_id_gen")

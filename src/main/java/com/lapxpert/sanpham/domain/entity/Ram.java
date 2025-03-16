@@ -1,5 +1,6 @@
 package com.lapxpert.sanpham.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,6 +16,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "ram")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ram {
     @Id
     @ColumnDefault("nextval('ram_id_seq')")
@@ -46,7 +48,7 @@ public class Ram {
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_loai_ram")
     private LoaiRam idLoaiRam;

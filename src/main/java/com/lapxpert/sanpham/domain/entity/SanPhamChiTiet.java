@@ -23,47 +23,47 @@ public class SanPhamChiTiet {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_sp")
     private SanPham sanPham;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_ram")
     private Ram ram;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_man_hinh")
     private ManHinh manHinh;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_pin")
     private PinSac pin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_mau")
     private MauSac mau;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_gpu")
     private Gpu gpu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_cpu")
     private Cpu cpu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_o_cung")
     private OCung oCung;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "id_seri")
     private Seri seri;
