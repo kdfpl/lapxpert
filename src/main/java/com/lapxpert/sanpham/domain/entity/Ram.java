@@ -51,6 +51,6 @@ public class Ram {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_loai_ram")
-    private LoaiRam idLoaiRam;
+    private LoaiRam loaiRam;
 
 }

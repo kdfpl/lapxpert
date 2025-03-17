@@ -1,6 +1,7 @@
 package com.lapxpert.dotgiamgia.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.lapxpert.sanpham.domain.entity.SanPhamChiTiet;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -24,11 +25,11 @@ public class DotGiamGiaChiTiet {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_dot")
-    @JsonBackReference
-    private DotGiamGia idDot;
+    private DotGiamGia dotGiamGia;
 
     @Size(max = 36)
     @NotNull
@@ -46,6 +47,6 @@ public class DotGiamGiaChiTiet {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_sp_ct")
-    private SanPhamChiTiet idSpCt;
+    private SanPhamChiTiet sanPhamChiTiet;
 
 }

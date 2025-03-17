@@ -4,6 +4,7 @@ import com.lapxpert.sanpham.domain.entity.*;
 import com.lapxpert.sanpham.domain.repository.*;
 import com.lapxpert.sanpham.domain.service.SPCTService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -136,7 +137,7 @@ public class SPCTServiceImpl implements SPCTService {
     @Override
     public Ram addRam(Ram ram) {
         Ram ramNew = new Ram();
-        ramNew.setIdLoaiRam(ram.getIdLoaiRam());
+        ramNew.setLoaiRam(ram.getLoaiRam());
         ramNew.setMaRam(ram.getMaRam());
         ramNew.setDungLuongRam(ram.getDungLuongRam());
         ramNew.setSoKheRam(ram.getSoKheRam());
@@ -150,7 +151,7 @@ public class SPCTServiceImpl implements SPCTService {
         Optional<Ram> ramOptional = ramRepository.findById(id);
         if (ramOptional.isPresent()) {
             Ram ram = ramOptional.get();
-            ram.setIdLoaiRam(ramDetails.getIdLoaiRam());
+            ram.setLoaiRam(ramDetails.getLoaiRam());
             ram.setMaRam(ramDetails.getMaRam());
             ram.setDungLuongRam(ramDetails.getDungLuongRam());
             ram.setSoKheRam(ramDetails.getSoKheRam());
@@ -380,6 +381,7 @@ public class SPCTServiceImpl implements SPCTService {
 
     //SPCT
     @Override
+    @Transactional
     public SanPhamChiTiet addSPCT(SanPhamChiTiet spct) {
         SanPhamChiTiet spctNew = new SanPhamChiTiet();
         spctNew.setSanPham(spct.getSanPham());
@@ -398,6 +400,7 @@ public class SPCTServiceImpl implements SPCTService {
     }
 
     @Override
+    @Transactional
     public SanPhamChiTiet updateSPCT(Integer id, SanPhamChiTiet spctDetails) {
         Optional<SanPhamChiTiet> spctOptional = spctRepository.findById(id);
         if (spctOptional.isPresent()) {

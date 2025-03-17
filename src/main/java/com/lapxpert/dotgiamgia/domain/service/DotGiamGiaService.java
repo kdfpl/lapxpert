@@ -14,8 +14,8 @@ public class DotGiamGiaService {
         this.dotGiamGiaRepository = dotGiamGiaRepository;
     }
 
-    public void addOrUpdate(DotGiamGia dotGiamGia) {
-        dotGiamGiaRepository.save(dotGiamGia);
+    public DotGiamGia addOrUpdate(DotGiamGia dotGiamGia) {
+        return dotGiamGiaRepository.save(dotGiamGia);
     }
 
     public void deleteById(Integer id) {

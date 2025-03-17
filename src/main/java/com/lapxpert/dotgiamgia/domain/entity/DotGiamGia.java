@@ -1,6 +1,7 @@
 package com.lapxpert.dotgiamgia.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -67,8 +68,8 @@ public class DotGiamGia {
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
 
-    @OneToMany(mappedBy = "idDot", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @OneToMany(mappedBy = "dotGiamGia", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<DotGiamGiaChiTiet> dotGiamGiaChiTiets = new LinkedHashSet<>();
 
     @PrePersist

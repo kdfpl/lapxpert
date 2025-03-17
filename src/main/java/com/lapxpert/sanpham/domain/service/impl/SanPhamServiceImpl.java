@@ -10,6 +10,7 @@ import com.lapxpert.sanpham.domain.repository.SanPhamRepository;
 import com.lapxpert.sanpham.domain.repository.ThuongHieuRepository;
 import com.lapxpert.sanpham.domain.service.SanPhamService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
+    @Transactional
     public SanPham addSanPham(SanPham sanPham) {
         SanPham spNew = new SanPham();
         spNew.setLoai(sanPham.getLoai());
@@ -69,6 +71,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
+    @Transactional
     public SanPham updateSanPham(Integer id, SanPham sanPhamDetails) {
         Optional<SanPham> spOptional = sanPhamRepository.findById(id);
         if (spOptional.isPresent()) {
@@ -89,6 +92,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
+    @Transactional
     public boolean deleteSanPham(Integer id) {
         Optional<SanPham> spOptional = sanPhamRepository.findById(id);
         if (spOptional.isPresent()) {

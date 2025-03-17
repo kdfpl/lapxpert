@@ -1,6 +1,7 @@
 package com.lapxpert.sanpham.application.controller;
 
 import com.lapxpert.sanpham.domain.entity.*;
+import com.lapxpert.sanpham.domain.service.LoaiRamService;
 import com.lapxpert.sanpham.domain.service.SPCTService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,11 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class SPCTController {
     private final SPCTService sanPhamService;
+    private final LoaiRamService loaiRamService;
 
-    public SPCTController(SPCTService sanPhamService) {
+    public SPCTController(SPCTService sanPhamService, LoaiRamService loaiRamService) {
         this.sanPhamService = sanPhamService;
+        this.loaiRamService = loaiRamService;
     }
 
     @GetMapping("/fetch")
@@ -24,6 +27,11 @@ public class SPCTController {
     @GetMapping("/ram")
     public List<Ram> getAllRam() {
         return sanPhamService.getAllRam();
+    }
+
+    @GetMapping("/ram/loai-ram/fetch")
+    public List<LoaiRam> getAllLoaiRam() {
+        return loaiRamService.getAll();
     }
 
     @GetMapping("/man-hinh")

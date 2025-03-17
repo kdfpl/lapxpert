@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/dot-giam-gia")
 public class DotGiamGiaController {
     private final DotGiamGiaService dotGiamGiaService;
@@ -23,8 +23,8 @@ public class DotGiamGiaController {
     }
 
     @PostMapping("add")
-    public void addDotGiamGia(@RequestBody DotGiamGia dotGiamGia) {
-        dotGiamGiaService.addOrUpdate(dotGiamGia);
+    public DotGiamGia addDotGiamGia(@RequestBody DotGiamGia dotGiamGia) {
+        return dotGiamGiaService.addOrUpdate(dotGiamGia);
     }
 
     @DeleteMapping("delete/{id}")
