@@ -19,10 +19,7 @@ public class ThongKeController {
     @Autowired
     HoaDonService hoaDonService;
 
-    @GetMapping("/thanh-vien")
-    public Integer getSizeThanhVien() {
-        return hoaDonService.getCount();
-    }
+
     @GetMapping("/hien-thi")
     public List<HoaDon> getHoaDon() {
         return hoaDonService.getAll();
@@ -145,7 +142,7 @@ public class ThongKeController {
     public Map<String, Object> getPieChartData() {
         return Map.of(
                 "labels", List.of("Dell", "HP", "Apple", "Lenovo", "Asus", "Acer","MSI"),
-                "data", List.of(25, 20, 5, 25, 15,10,20)
+                "data", List.of(1, 1, 1, 1, 1,1,1)
         );
     }
 }

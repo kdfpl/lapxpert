@@ -24,7 +24,7 @@ public class SanPhamController {
     }
 
 
-    @GetMapping("/fetch")
+        @GetMapping("/fetch")
     public List<SanPham> getAllSanPham() {
         return sanPhamService.getAllSP();
     }
