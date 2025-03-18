@@ -6,7 +6,7 @@ LapXpert là một ứng dụng web thương mại điện tử chuyên bán lap
 ## 🛠 Công Nghệ Sử Dụng
 
 ### **Backend (Spring Boot)**
-- **Spring Boot + GraphQL** - Phát triển API RESTful
+- **Spring Boot ** - Phát triển API RESTful
 - **Spring Security + JWT** - Xác thực & bảo mật
 - **Spring Data JPA + Hibernate** - Tương tác với cơ sở dữ liệu
 - **PostgreSQL** - Cơ sở dữ liệu chính
