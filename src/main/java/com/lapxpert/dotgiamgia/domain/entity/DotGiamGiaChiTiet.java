@@ -49,4 +49,13 @@ public class DotGiamGiaChiTiet {
     @JoinColumn(name = "id_sp_ct")
     private SanPhamChiTiet sanPhamChiTiet;
 
+    @PrePersist
+    protected void onCreate() {
+        if (ngayTao == null) {
+            ngayTao = Instant.now();
+        }
+        if (tinhTrang == null) {
+            tinhTrang = true;
+        }
+    }
 }

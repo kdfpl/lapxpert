@@ -1,7 +1,6 @@
 package com.lapxpert.dotgiamgia.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -45,7 +44,7 @@ public class DotGiamGia {
     private LocalDateTime thoiGianKetThuc;
 
     @NotNull
-    @Column(name = "gia_tri_giam", nullable = false, precision = 10, scale = 2)
+    @Column(name = "gia_tri_giam", nullable = false, precision = 5, scale = 2)
     private BigDecimal giaTriGiam;
 
     @Size(max = 50)
@@ -68,7 +67,7 @@ public class DotGiamGia {
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIgnore
     @OneToMany(mappedBy = "dotGiamGia", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<DotGiamGiaChiTiet> dotGiamGiaChiTiets = new LinkedHashSet<>();
 
