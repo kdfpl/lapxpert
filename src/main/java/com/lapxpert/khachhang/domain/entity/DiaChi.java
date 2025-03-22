@@ -11,7 +11,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "dia_chi")
+@Table(name = "dia_chi_kh")
 public class DiaChi {
 
     @Id

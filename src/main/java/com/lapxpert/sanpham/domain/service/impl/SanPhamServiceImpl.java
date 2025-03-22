@@ -12,6 +12,7 @@ import com.lapxpert.sanpham.domain.service.SanPhamService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
@@ -54,9 +55,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public SanPham addSanPham(SanPham sanPham) {
         SanPham spNew = new SanPham();
-        spNew.setLoai(sanPham.getLoai());
-        spNew.setHeDieuHanh(sanPham.getHeDieuHanh());
-        spNew.setThuongHieu(sanPham.getThuongHieu());
+        spNew.setIdLoai(sanPham.getIdLoai());
+        spNew.setIdHeDieuHanh(sanPham.getIdHeDieuHanh());
+        spNew.setIdThuongHieu(sanPham.getIdThuongHieu());
         spNew.setMaSp(sanPham.getMaSp());
         spNew.setTenSp(sanPham.getTenSp());
         spNew.setMoTa(sanPham.getMoTa());
@@ -72,9 +73,9 @@ public class SanPhamServiceImpl implements SanPhamService {
         Optional<SanPham> spOptional = sanPhamRepository.findById(id);
         if (spOptional.isPresent()) {
             SanPham sanPham = spOptional.get();
-            sanPham.setLoai(sanPhamDetails.getLoai());
-            sanPham.setHeDieuHanh(sanPhamDetails.getHeDieuHanh());
-            sanPham.setThuongHieu(sanPhamDetails.getThuongHieu());
+            sanPham.setIdLoai(sanPhamDetails.getIdLoai());
+            sanPham.setIdHeDieuHanh(sanPhamDetails.getIdHeDieuHanh());
+            sanPham.setIdThuongHieu(sanPhamDetails.getIdThuongHieu());
             sanPham.setMaSp(sanPhamDetails.getMaSp());
             sanPham.setTenSp(sanPhamDetails.getTenSp());
             sanPham.setMoTa(sanPhamDetails.getMoTa());
