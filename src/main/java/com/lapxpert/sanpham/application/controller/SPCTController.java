@@ -70,6 +70,10 @@ public class SPCTController {
     }
 
     //Cpu
+    @GetMapping("/cpu/get-one/{id}")
+    public Cpu getCpuById(@PathVariable Integer id) {
+        return sanPhamService.getCpuById(id);
+    }
     @PostMapping("/cpu/add")
     public Cpu addCpu(@RequestBody Cpu cpu) {
         return sanPhamService.addCpu(cpu);

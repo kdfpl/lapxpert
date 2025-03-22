@@ -4,6 +4,7 @@ import com.lapxpert.nhanvien.domain.entity.DiaChiNV;
 import com.lapxpert.nhanvien.domain.entity.NhanVien;
 import com.lapxpert.nhanvien.domain.service.DiaChiService;
 import com.lapxpert.nhanvien.domain.service.NhanVienService;
+import jakarta.validation.constraints.Null;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,8 @@ public class NhanVienController {
     }
 
     @GetMapping("get-one/{id}")
-    public Optional<NhanVien> handelGetOne(@PathVariable Long id) {
-        return nhanVienService.getByID(id);
+    public NhanVien handelGetOne(@PathVariable Long id) {
+        return nhanVienService.getByID(id).orElse(null);
     }
 
     @GetMapping("dia-chi/get-one/{id}")

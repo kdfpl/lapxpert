@@ -39,9 +39,8 @@ dependencies {
     implementation 'org.springframework.modulith:spring-modulith-starter-core'
     implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
-    testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.16.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
@@ -49,11 +48,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.graphql:spring-graphql-test'
+    testImplementation 'org.springframework:spring-webflux'
+    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
     runtimeOnly 'org.springframework.modulith:spring-modulith-actuator'
     runtimeOnly 'org.springframework.modulith:spring-modulith-observability'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     runtimeOnly 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars:10.0.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 dependencyManagement {

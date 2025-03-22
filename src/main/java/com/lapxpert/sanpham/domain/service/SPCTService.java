@@ -15,6 +15,8 @@ public interface SPCTService {
     List<OCung> getAllOCung();
     List<Seri> getAllSeri();
 
+    Cpu getCpuById(Integer id);
+
     Cpu addCpu(Cpu cpu);
 
     Cpu updateCpu(Integer id, Cpu cpu);

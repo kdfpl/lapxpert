@@ -88,6 +88,11 @@ public class SPCTServiceImpl implements SPCTService {
         return seriRepository.findAll();
     }
 
+    @Override
+    public Cpu getCpuById(Integer id) {
+        return cpuRepository.findById(id).orElse(null);
+    }
+
     //    CPU CRUD
     @Override
     public Cpu addCpu(Cpu cpu) {
