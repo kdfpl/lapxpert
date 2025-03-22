@@ -10,7 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -37,11 +37,11 @@ public class DotGiamGia {
 
     @NotNull
     @Column(name = "thoi_gian_bat_dau", nullable = false)
-    private LocalDateTime thoiGianBatDau;
+    private OffsetDateTime thoiGianBatDau;
 
     @NotNull
     @Column(name = "thoi_gian_ket_thuc", nullable = false)
-    private LocalDateTime thoiGianKetThuc;
+    private OffsetDateTime thoiGianKetThuc;
 
     @NotNull
     @Column(name = "gia_tri_giam", nullable = false, precision = 5, scale = 2)

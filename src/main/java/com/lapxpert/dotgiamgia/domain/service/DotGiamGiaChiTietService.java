@@ -5,6 +5,7 @@ import com.lapxpert.dotgiamgia.domain.repository.DotGiamGiaChiTietRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DotGiamGiaChiTietService {
@@ -22,7 +23,20 @@ public class DotGiamGiaChiTietService {
         dotGiamGiaChiTietRepository.save(dotGiamGiaChiTiet);
     }
 
-    public void deleteById(Integer id) {
-        dotGiamGiaChiTietRepository.deleteById(id);
+    public void disableById(Integer id) {
+        Optional<DotGiamGiaChiTiet> dotGiamGiaChiTietOptional = dotGiamGiaChiTietRepository.findById(id);
+        if (dotGiamGiaChiTietOptional.isPresent()) {
+            DotGiamGiaChiTiet dotGiamGiaChiTiet = dotGiamGiaChiTietOptional.get();
+            dotGiamGiaChiTiet.setTinhTrang(false);
+            dotGiamGiaChiTietRepository.save(dotGiamGiaChiTiet);
+        }
+    }
+
+    public List<DotGiamGiaChiTiet> findByIdDotGiamGia(Integer id) {
+        return dotGiamGiaChiTietRepository.findDotGiamGiaChiTietsByDotGiamGia_Id(id);
+    }
+
+    public Optional<DotGiamGiaChiTiet> findById(Integer id) {
+        return dotGiamGiaChiTietRepository.findById(id);
     }
 }

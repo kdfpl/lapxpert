@@ -1,0 +1,57 @@
+type DotGiamGia {
+    id: ID!
+    maDot: String!
+    tenDot: String!
+    thoiGianBatDau: DateTime!
+    thoiGianKetThuc: DateTime!
+    giaTriGiam: BigDecimal!
+    loaiGiamGia: String!
+    moTa: String
+    trangThai: String!
+    ngayTao: String
+    tinhTrang: Boolean
+    chiTiet: [DotGiamGiaChiTiet!]
+}
+
+type DotGiamGiaChiTiet {
+    id: ID!
+    dotGiamGia: DotGiamGia!
+    sanPhamChiTiet: SanPhamChiTiet!
+    maDotChiTiet: String!
+    ngayTao: DateTime!
+    tinhTrang: Boolean
+}
+
+type Query {
+    dotGiamGias: [DotGiamGia!]!
+    dotGiamGiaById(id: ID!): DotGiamGia!
+    dotGiamGiaChiTiets: [DotGiamGiaChiTiet!]!
+    dotGiamGiaChiTietById(id: ID!): DotGiamGiaChiTiet!
+}
+
+input DotGiamGiaInput {
+    maDot: String!
+    tenDot: String!
+    thoiGianBatDau: DateTime!
+    thoiGianKetThuc: DateTime!
+    giaTriGiam: BigDecimal!
+    loaiGiamGia: String!
+    moTa: String
+    trangThai: String!
+    tinhTrang: Boolean
+}
+
+input DotGiamGiaChiTietInput {
+    dotGiamGiaId: ID!
+    sanPhamChiTietId: ID!
+    maDotChiTiet: String!
+    tinhTrang: Boolean
+}
+
+type Mutation {
+    createDotGiamGia(input: DotGiamGiaInput!): DotGiamGia!
+    updateDotGiamGia(id: ID!, input: DotGiamGiaInput!): DotGiamGia!
+    deleteDotGiamGia(id: ID!): Boolean
+    createDotGiamGiaChiTiet(input: DotGiamGiaChiTietInput!): DotGiamGiaChiTiet
+    updateDotGiamGiaChiTiet(id: ID!, input: DotGiamGiaChiTietInput!): DotGiamGiaChiTiet
+}
