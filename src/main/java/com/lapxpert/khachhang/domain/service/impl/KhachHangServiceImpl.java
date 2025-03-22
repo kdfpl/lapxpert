@@ -19,7 +19,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 
     @Override
     public List<KhachHang> getAll() {
-        return repository.findAllByTinhTrang(true);
+        return repository.findAll();
     }
 
     @Override

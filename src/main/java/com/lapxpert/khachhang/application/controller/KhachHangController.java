@@ -1,6 +1,6 @@
 package com.lapxpert.khachhang.application.controller;
 
-import com.lapxpert.khachhang.domain.entity.DiaChi;
+import com.lapxpert.khachhang.domain.entity.DiaChiKH;
 import com.lapxpert.khachhang.domain.entity.KhachHang;
 import com.lapxpert.khachhang.domain.service.DiaChiService;
 import com.lapxpert.khachhang.domain.service.KhachHangService;
@@ -38,6 +38,13 @@ public class KhachHangController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("dia-chi/get-one/{id}")
+    public ResponseEntity<DiaChiKH> getAddressById(@PathVariable Long id) {
+        return diaChiService.getDiaChiMacDinh(id,true)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("add")
     public ResponseEntity<KhachHang> addCustomer(@RequestBody KhachHang khachHang) {
         khachHang.setMaKhachHang(khachHangService.generateMaKhachHang());
@@ -45,7 +52,7 @@ public class KhachHangController {
         KhachHang savedKhachHang = khachHangService.save(khachHang);
 
         if (khachHang.getDiaChiList() != null && !khachHang.getDiaChiList().isEmpty()) {
-            for (DiaChi diaChi : khachHang.getDiaChiList()) {
+            for (DiaChiKH diaChi : khachHang.getDiaChiList()) {
                 diaChi.setKhachHang(savedKhachHang);
             }
             diaChiService.saveAll(khachHang.getDiaChiList());
@@ -65,11 +72,12 @@ public class KhachHangController {
         khachHang.setHoTen(dto.getHoTen());
         khachHang.setEmail(dto.getEmail());
         khachHang.setSdt(dto.getSdt());
+        khachHang.setTinhTrang(dto.getTinhTrang());
 
         diaChiService.deleteDiaChi(khachHang.getId());
 
         if (dto.getDiaChiList() != null && !dto.getDiaChiList().isEmpty()) {
-            for (DiaChi diaChi : dto.getDiaChiList()) {
+            for (DiaChiKH diaChi : dto.getDiaChiList()) {
                 diaChi.setKhachHang(khachHang);
             }
             diaChiService.saveAll(dto.getDiaChiList());

@@ -19,7 +19,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
     @Override
     public List<NhanVien> getAll() {
-        return nhanVienRepository.findAllByTinhTrang(true);
+        return nhanVienRepository.findAll();
     }
 
     @Override

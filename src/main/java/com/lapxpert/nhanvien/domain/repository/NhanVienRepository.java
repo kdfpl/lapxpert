@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface NhanVienRepository extends JpaRepository<NhanVien, Long> {
-    List<NhanVien> findAllByTinhTrang(boolean tinhTrang);
 
     boolean existsByEmailAndTinhTrangIsTrueAndIdNot(String email, Long id);
 

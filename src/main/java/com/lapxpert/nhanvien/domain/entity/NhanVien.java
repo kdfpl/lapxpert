@@ -1,5 +1,6 @@
 package com.lapxpert.nhanvien.domain.entity;
 
+import com.lapxpert.khachhang.domain.entity.DiaChiKH;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -42,6 +45,9 @@ public class NhanVien {
 
     @Column(name = "mat_khau", length = 255, nullable = false)
     private String matKhau = UUID.randomUUID().toString();
+
+    @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DiaChiNV> diaChiList = new ArrayList<>();
 
     @Column(name = "ngay_tao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime ngayTao = LocalDateTime.now();

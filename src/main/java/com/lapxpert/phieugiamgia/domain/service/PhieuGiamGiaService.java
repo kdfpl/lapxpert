@@ -23,7 +23,11 @@ public class PhieuGiamGiaService {
     }
 
     public void delete(Integer id) {
-        phieuGiamGiaRepository.deleteById(id);
+        PhieuGiamGia phieuGiamGia = phieuGiamGiaRepository.findById(id).orElse(null);
+        if (phieuGiamGia != null) {
+            phieuGiamGia.setTinhTrang(false);
+            phieuGiamGiaRepository.save(phieuGiamGia);
+        }
     }
 
     public PhieuGiamGia searchByID(Integer id) {
