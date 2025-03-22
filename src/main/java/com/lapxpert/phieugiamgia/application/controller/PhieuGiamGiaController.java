@@ -25,7 +25,7 @@ public class PhieuGiamGiaController {
         return phieuGiamGiaService.getAll();
     }
 
-    @PutMapping("update")
+    @PutMapping("edit")
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<String> updatePhieuGiamGia(@RequestBody PhieuGiamGia phieuGiamGia) {
         try {
@@ -61,7 +61,7 @@ public class PhieuGiamGiaController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("get-one/{id}")
     public ResponseEntity<PhieuGiamGia> getPhieuGiamGiaById(@PathVariable("id") Integer id) {
         PhieuGiamGia phieuGiamGia = phieuGiamGiaService.searchByID(id);
         if (phieuGiamGia != null) {

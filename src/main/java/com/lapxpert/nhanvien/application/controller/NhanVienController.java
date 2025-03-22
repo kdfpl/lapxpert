@@ -1,6 +1,8 @@
 package com.lapxpert.nhanvien.application.controller;
 
+import com.lapxpert.nhanvien.domain.entity.DiaChiNV;
 import com.lapxpert.nhanvien.domain.entity.NhanVien;
+import com.lapxpert.nhanvien.domain.service.DiaChiService;
 import com.lapxpert.nhanvien.domain.service.NhanVienService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,11 @@ import java.util.Optional;
 public class NhanVienController {
 
     private final NhanVienService nhanVienService;
+    private final DiaChiService diaChiService;
 
-    public NhanVienController(NhanVienService nhanVienService) {
+    public NhanVienController(NhanVienService nhanVienService, DiaChiService diaChiService) {
         this.nhanVienService = nhanVienService;
+        this.diaChiService = diaChiService;
     }
 
     @GetMapping("fetch")
@@ -30,9 +34,26 @@ public class NhanVienController {
         return nhanVienService.getByID(id);
     }
 
+    @GetMapping("dia-chi/get-one/{id}")
+    public ResponseEntity<DiaChiNV> getAddressById(@PathVariable Long id) {
+        return diaChiService.getDiaChiMacDinh(id,true)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("add")
     public NhanVien addCustomer(@RequestBody NhanVien nhanVien) {
         nhanVien.setMaNhanVien(nhanVienService.generateMaNhanVien());
+
+        NhanVien savedNhanVien = nhanVienService.save(nhanVien);
+
+        if (nhanVien.getDiaChiList() != null && !nhanVien.getDiaChiList().isEmpty()) {
+            for (DiaChiNV diaChi : nhanVien.getDiaChiList()) {
+                diaChi.setNhanVien(savedNhanVien);
+            }
+            diaChiService.saveAll(nhanVien.getDiaChiList());
+        }
+
         return nhanVienService.save(nhanVien);
     }
 
@@ -47,6 +68,16 @@ public class NhanVienController {
         nhanVien.setHoTen(dto.getHoTen());
         nhanVien.setEmail(dto.getEmail());
         nhanVien.setSdt(dto.getSdt());
+        nhanVien.setTinhTrang(dto.getTinhTrang());
+
+        diaChiService.deleteDiaChi(nhanVien.getId());
+
+        if (dto.getDiaChiList() != null && !dto.getDiaChiList().isEmpty()) {
+            for (DiaChiNV diaChi : dto.getDiaChiList()) {
+                diaChi.setNhanVien(nhanVien);
+            }
+            diaChiService.saveAll(dto.getDiaChiList());
+        }
 
         nhanVienService.save(nhanVien);
         return ResponseEntity.ok("Cập nhật thành công!");

@@ -47,7 +47,7 @@ public class KhachHang {
     private String hinhAnh;
 
     @OneToMany(mappedBy = "khachHang", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DiaChi> diaChiList = new ArrayList<>();
+    private List<DiaChiKH> diaChiList = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {

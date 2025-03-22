@@ -1,14 +1,17 @@
 package com.lapxpert.khachhang.domain.service;
 
-import com.lapxpert.khachhang.domain.entity.DiaChi;
+import com.lapxpert.khachhang.domain.entity.DiaChiKH;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DiaChiService {
 
-    List<DiaChi> getDiaChiByKhachHangId(Long khachHangId);
+    List<DiaChiKH> getDiaChiByKhachHangId(Long khachHangId);
 
-    void saveAll(List<DiaChi> diaChi);
+    Optional<DiaChiKH> getDiaChiMacDinh(Long id , boolean macDinh);
+
+    void saveAll(List<DiaChiKH> diaChi);
 
     void deleteDiaChi(Long id);
 
