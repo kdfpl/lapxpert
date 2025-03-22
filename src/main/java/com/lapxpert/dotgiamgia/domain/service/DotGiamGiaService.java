@@ -5,6 +5,7 @@ import com.lapxpert.dotgiamgia.domain.repository.DotGiamGiaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DotGiamGiaService {
@@ -27,4 +28,7 @@ public class DotGiamGiaService {
         return dotGiamGiaRepository.findAll();
     }
 
+    public Optional<DotGiamGia> findById(Integer id) {
+        return dotGiamGiaRepository.findById(id);
+    }
 }

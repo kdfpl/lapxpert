@@ -1,0 +1,155 @@
+type SanPhamChiTiet {
+    id: ID!
+    sanPham: SanPham!
+    ram: Ram
+    manHinh: ManHinh
+    pinSac: PinSac
+    mauSac: MauSac
+    gpu: Gpu
+    cpu: Cpu
+    oCung: OCung
+    seri: Seri
+    maChiTietSp: String!
+    giaBan: BigDecimal!
+    ngayTao: DateTime!
+    tinhTrang: Boolean
+}
+
+type SanPham {
+    id: ID!
+    loai: LoaiSanPham!
+    heDieuHanh: HeDieuHanh!
+    thuongHieu: ThuongHieu!
+    maSp: String!
+    tenSp: String!
+    ngayTao: DateTime!
+    tinhTrang: Boolean
+    moTa: String!
+    baoHanhThang: Int!
+    trangThai: Boolean
+    hinhAnh: String!
+    sanPhamChiTiets: [SanPhamChiTiet!]
+}
+
+type LoaiSanPham {
+    id: ID!
+    maLoai: String!
+    tenLoai: String!
+    ngayTao: DateTime!
+    tinhTrang: Boolean
+}
+
+type HeDieuHanh {
+    id: ID!
+    maHeDieuHanh: String!
+    tenHeDieuHanh: String!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type ThuongHieu {
+    id: ID!
+    maThuongHieu: String!
+    tenThuongHieu: String!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type Ram {
+    id: ID!
+    maRam: String!
+    dungLuongRam: Int!
+    soKheRam: Int!
+    hoTroToiDa: Int!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+    loaiRam: LoaiRam!
+}
+
+type LoaiRam {
+    id: ID!
+    maLoai: String!
+    tenLoaiRam: String!
+    busRam: Int!
+    dienAp: Float!
+    hoTroXmp: Boolean!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type ManHinh {
+    id: ID!
+    maManHinh: String!
+    kichThuoc: Float!
+    tanSoQuet: Int!
+    loaiTamNen: String!
+    doSang: Int!
+    chuanMau: String!
+    doPhanGiai: String!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type PinSac {
+    id: ID!
+    maPin: String!
+    dungLuongPin: Int!
+    thoiLuongPin: Float!
+    congSuatSac: Int!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type MauSac {
+    id: ID!
+    maMau: String!
+    tenMau: String!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type Gpu {
+    id: ID!
+    maGpu: String!
+    loaiGpu: String!
+    tenGpu: String!
+    boNhoVram: Int!
+    congNgheGpu: String!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type Cpu {
+    id: ID!
+    maCpu: String!
+    hangCpu: String!
+    tenCpu: String!
+    theHeCpu: String!
+    soNhan: Int!
+    soLuong: Int!
+    xungNhip: Float!
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type OCung {
+    id: ID!
+    maOcung: String!
+    loaiOCung: String!
+    dungLuong: Int!
+    chuanKetNoi: String!
+    tocDoDoc: Int!
+    tocDoGhi: Int!
+    hoTroNangCap: Boolean
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}
+
+type Seri {
+    id: ID!
+    maSeri: String!
+    trangThai: String!
+    ngayNhapKho: DateTime
+    ngayTao: DateTime
+    tinhTrang: Boolean
+}

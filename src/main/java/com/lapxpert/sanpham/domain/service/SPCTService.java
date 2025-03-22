@@ -62,4 +62,6 @@ public interface SPCTService {
     SanPhamChiTiet updateSPCT(Integer id, SanPhamChiTiet sanPhamChiTiet);
 
     boolean deleteSPCT(Integer id);
+
+    SanPhamChiTiet getSPCTById(Integer id);
 }

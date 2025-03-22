@@ -433,4 +433,10 @@ public class SPCTServiceImpl implements SPCTService {
         }
         return false;
     }
+
+    @Override
+    public SanPhamChiTiet getSPCTById(Integer id) {
+        Optional<SanPhamChiTiet> spctOptional = spctRepository.findById(id);
+        return spctOptional.orElse(null);
+    }
 }
