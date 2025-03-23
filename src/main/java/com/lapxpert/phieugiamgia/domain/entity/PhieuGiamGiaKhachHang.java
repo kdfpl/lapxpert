@@ -41,4 +41,7 @@ public class PhieuGiamGiaKhachHang {
 
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
+
+    public PhieuGiamGiaKhachHang(PhieuGiamGia phieuGiamGia, KhachHang kh) {
+    }
 }
