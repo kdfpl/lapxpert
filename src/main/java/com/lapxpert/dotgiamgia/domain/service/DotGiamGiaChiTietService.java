@@ -32,7 +32,7 @@ public class DotGiamGiaChiTietService {
         }
     }
 
-    public List<DotGiamGiaChiTiet> findByIdDotGiamGia(Integer id) {
+    public List<DotGiamGiaChiTiet> findByDotGiamGiaId(Integer id) {
         return dotGiamGiaChiTietRepository.findDotGiamGiaChiTietsByDotGiamGia_Id(id);
     }
 

@@ -27,6 +27,7 @@ type Query {
     dotGiamGiaById(id: ID!): DotGiamGia!
     dotGiamGiaChiTiets: [DotGiamGiaChiTiet!]!
     dotGiamGiaChiTietById(id: ID!): DotGiamGiaChiTiet!
+    dotGiamGiaChiTietsByDotGiamGiaId(dotGiamGiaId: ID!): [DotGiamGiaChiTiet!]
 }
 
 input DotGiamGiaInput {

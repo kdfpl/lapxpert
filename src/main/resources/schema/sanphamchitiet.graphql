@@ -3,8 +3,8 @@ type SanPhamChiTiet {
     sanPham: SanPham!
     ram: Ram
     manHinh: ManHinh
-    pinSac: PinSac
-    mauSac: MauSac
+    pin: PinSac
+    mau: MauSac
     gpu: Gpu
     cpu: Cpu
     oCung: OCung

@@ -34,7 +34,7 @@ public class DotGiamGiaChiTietResolver {
     public List<DotGiamGiaChiTiet> chiTiet(DgsDataFetchingEnvironment dfe) {
         DotGiamGia dotGiamGia = dfe.getSource();
         assert dotGiamGia != null;
-        return dotGiamGiaChiTietService.findByIdDotGiamGia(dotGiamGia.getId());
+        return dotGiamGiaChiTietService.findByDotGiamGiaId(dotGiamGia.getId());
     }
 
     @DgsQuery
@@ -89,4 +89,8 @@ public class DotGiamGiaChiTietResolver {
         dotGiamGiaChiTietService.addOrUpdate(dotGiamGiaChiTiet);
     }
 
+    @DgsQuery
+    public List<DotGiamGiaChiTiet> dotGiamGiaChiTietsByDotGiamGiaId(@InputArgument String dotGiamGiaId) {
+        return dotGiamGiaChiTietService.findByDotGiamGiaId(Integer.parseInt(dotGiamGiaId));
+    }
 }
