@@ -1,5 +1,6 @@
 package com.lapxpert.phieugiamgia.application.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lapxpert.phieugiamgia.domain.entity.PhieuGiamGia;
 import com.lapxpert.phieugiamgia.domain.service.PhieuGiamGiaService;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/phieu-giam-gia")
@@ -26,11 +28,17 @@ public class PhieuGiamGiaController {
     }
 
     @PutMapping("edit")
-    @CrossOrigin(origins = "http://localhost:5173")
-    public ResponseEntity<String> updatePhieuGiamGia(@RequestBody PhieuGiamGia phieuGiamGia) {
+    public ResponseEntity<String> updatePhieuGiamGia(@RequestBody Map<String, Object> requestData) {
         try {
+            PhieuGiamGia phieuGiamGia = new ObjectMapper().convertValue(requestData.get("phieuGiamGia"), PhieuGiamGia.class);
+
             if (phieuGiamGia.getMaPhieuGiamGia() != null) {
                 phieuGiamGiaService.addOrUpdate(phieuGiamGia);
+
+                if (phieuGiamGia.getRiengTu() && requestData.containsKey("customerIds")) {
+                    List<Long> customerIds = (List<Long>) requestData.get("customerIds");
+                    phieuGiamGiaService.assignVoucherToCustomers(phieuGiamGia.getId(), customerIds);
+                }
                 return new ResponseEntity<>("Cập nhật phiếu giảm giá thành công!", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Mã phiếu giảm giá không hợp lệ!", HttpStatus.BAD_REQUEST);
@@ -39,6 +47,7 @@ public class PhieuGiamGiaController {
             return new ResponseEntity<>("Có lỗi xảy ra khi cập nhật phiếu giảm giá!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @PostMapping("add")
     public ResponseEntity<String> add(@RequestBody PhieuGiamGia phieuGiamGia) {
@@ -70,4 +79,21 @@ public class PhieuGiamGiaController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+//    @PostMapping("assign")
+//    public ResponseEntity<String> assignVoucherToCustomers(@RequestBody Map<String, Object> data) {
+//        try {
+//            Integer phieuGiamGiaId = (Integer) data.get("voucherId");
+//            List<Integer> customerIds = (List<Integer>) data.get("customerIds");
+//
+//            String result = phieuGiamGiaService.assignVoucherToCustomers(phieuGiamGiaId, customerIds);
+//
+//            if (result.contains("không đủ")) {
+//                return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+//            }
+//
+//            return new ResponseEntity<>(result, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>("Lỗi gán khách hàng vào phiếu giảm giá!", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }

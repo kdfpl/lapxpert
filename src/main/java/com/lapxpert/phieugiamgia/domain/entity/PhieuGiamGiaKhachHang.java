@@ -6,10 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import java.time.Instant;
 
 @Getter
@@ -17,9 +15,9 @@ import java.time.Instant;
 @Entity
 @Table(name = "phieu_giam_gia_khach_hang")
 public class PhieuGiamGiaKhachHang {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "phieu_giam_gia_khach_hang_id_gen")
-    @SequenceGenerator(name = "phieu_giam_gia_khach_hang_id_gen", sequenceName = "phieu_giam_gia_khach_hang_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -38,12 +36,12 @@ public class PhieuGiamGiaKhachHang {
     @Column(name = "ma_phieu_giam_gia_khach_hang", nullable = false, length = 36)
     private String maPhieuGiamGiaKhachHang;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "ngay_tao")
     private Instant ngayTao;
 
-    @ColumnDefault("true")
     @Column(name = "tinh_trang")
     private Boolean tinhTrang;
 
+    public PhieuGiamGiaKhachHang(PhieuGiamGia phieuGiamGia, KhachHang kh) {
+    }
 }

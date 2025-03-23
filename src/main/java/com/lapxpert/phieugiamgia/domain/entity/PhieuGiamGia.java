@@ -1,5 +1,7 @@
 package com.lapxpert.phieugiamgia.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lapxpert.khachhang.domain.entity.KhachHang;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,6 +13,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -56,12 +60,19 @@ public class PhieuGiamGia {
     private String moTa;
 
     @Column(name = "trang_thai")
-    private Boolean trangThai;
+    private String trangThai;
 
     @Column(name = "tinh_trang")
-    private Boolean tinhTrang;
+    private Boolean tinhTrang = true;
 
     @Column(name = "ngay_tao")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate ngayTao;
+    private LocalDate ngayTao = LocalDate.now();
+
+    @Column(name = "is_private")
+    private Boolean riengTu = false;
+
+    @OneToMany(mappedBy = "idGiamGia", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<PhieuGiamGiaKhachHang> danhSachKhachHang = new ArrayList<>();
 }
